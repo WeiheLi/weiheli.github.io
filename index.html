@@ -72,6 +72,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
 .content h3 { font-size: 1.3rem; font-weight: 700; color: var(--head); margin: 26px 0 12px; }
 .content p { margin: 0 0 16px; text-align: justify; hyphens: auto; }
 .hl { color: var(--red); font-weight: 700; }
+.person { color: var(--head); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.person:hover { color: var(--blue); }
 .blue { font-weight: 700; }
 
 /* News */
@@ -152,7 +154,7 @@ footer { border-top: 1px solid var(--rule); padding-block: 22px 40px; color: var
   <main class="content">
     <section id="about">
       <h2><span class="emo" aria-hidden="true">&#x1F468;&#x200D;&#x1F393;</span>About me</h2>
-      <p>I am a postdoctoral researcher in the Large-Scale Data &amp; Systems (LSDS) group at Imperial College London, where I work on <span class="hl">cloud networking</span> with Dr. Marios Kogias. I received my Ph.D. from the University of Edinburgh in 2025, advised by Prof. Paul Patras, and my M.Sc. from Central South University, advised by Prof. Jiawei Huang.</p>
+      <p>I am a postdoctoral researcher in the Large-Scale Data &amp; Systems (LSDS) group at Imperial College London, where I work on <span class="hl">cloud networking</span> with <a class="person" href="https://marioskogias.github.io/" target="_blank" rel="noopener">Dr. Marios Kogias</a>. I received my Ph.D. from the University of Edinburgh in 2025, advised by <a class="person" href="https://homepages.inf.ed.ac.uk/ppatras/" target="_blank" rel="noopener">Prof. Paul Patras</a>, and my M.Sc. from Central South University, advised by <a class="person" href="https://faculty.csu.edu.cn/huangjiawei/en/index.htm" target="_blank" rel="noopener">Prof. Jiawei Huang</a>.</p>
       <p>My research focuses on <span class="hl">sketches and stream analytics</span>, <span class="hl">data-intensive systems</span>, and <span class="hl">programmable data planes</span>. Modern systems need answers from data streams that arrive faster than exact state can be kept: which items are heavy, which keep recurring, which stay stable. I design sketches, compact data structures with provable error bounds, to answer such questions, and build them into systems that run at line rate on multi-core CPUs, programmable switches, and FPGAs. I have also worked on <span class="hl">multimedia</span>, designing learning-based adaptive bitrate algorithms for video streaming, and on <span class="hl">data center networks</span>, including load balancing and traffic scheduling.</p>
       <p>As first author, I have published at <a class="blue" href="#publications">ACM SIGMOD, IEEE ICDE, ACM SIGKDD, and ACM WWW</a>, and received the <span class="hl">ACM WWW 2024 Best Student Paper Award</span>.</p>
     </section>
@@ -230,6 +232,15 @@ footer { border-top: 1px solid var(--rule); padding-block: 22px 40px; color: var
           <div class="t">P-Sketch: A Fast and Accurate Sketch for Persistent Item Lookup</div>
           <div class="a"><b>W. Li</b>, P. Patras</div>
           <div class="v">IEEE/ACM Transactions on Networking (<b>ToN 2024</b>) <span class="links"><a href="https://www.research.ed.ac.uk/en/publications/p-sketch-a-fast-and-accurate-sketch-for-persistent-item-lookup/" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+      </ol>
+
+      <h3>Posters</h3>
+      <ol class="pubs">
+        <li><span class="n">[P1]</span><div>
+          <div class="t">Charon: Stratified Priority Sampling for Differentiated Per-Flow Measurement in High-Speed Networks</div>
+          <div class="a"><b>W. Li</b>, X. Li, D. Pezaros, P. Patras</div>
+          <div class="v">ACM SIGCOMM Conference, Poster Session (<b>SIGCOMM 2026</b>) <span class="links"><a href="https://doi.org/10.1145/3789240.3830276" target="_blank" rel="noopener">[Paper]</a></span></div>
         </div></li>
       </ol>
 
