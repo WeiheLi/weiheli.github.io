@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://weiheli.github.io/sitemap.xml
