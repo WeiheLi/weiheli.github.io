@@ -50,6 +50,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-
 .photo { position: relative; width: 200px; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 8px; overflow: hidden; background: #e9edf3; display: grid; place-items: center; }
 .photo span { font-size: 2.6rem; font-weight: 700; color: #a3adbb; }
 .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-fig { margin: 0; width: 200px; max-width: 100%; }
+.photo-fig figcaption { margin-top: 6px; font-size: 0.78rem; font-style: italic; color: var(--muted); line-height: 1.4; }
+.photo-fig figcaption svg, .photo-fig figcaption i { margin-right: 3px; }
 .profile h1 { font-size: 1.2rem; font-weight: 700; color: var(--head); margin: 12px 0 2px; line-height: 1.3; }
 .profile .aff { font-size: 0.9rem; line-height: 1.5; margin: 0 0 12px; color: var(--ink); }
 .icons { display: flex; gap: 12px; margin: 0 0 16px; font-size: 1.15rem; }
@@ -105,7 +108,8 @@ footer { border-top: 1px solid var(--rule); padding-block: 22px 40px; color: var
   .navbar nav a { font-size: 1rem; padding-block: 16px; }
   .page { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 28px 48px; }
   .profile { position: static; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 18px; align-items: start; }
-  .photo { width: 112px; grid-row: span 5; }
+  .photo-fig { width: 112px; grid-row: span 5; }
+  .photo { width: 112px; }
   .profile h1 { margin-top: 0; }
   .content h2 { font-size: 1.6rem; }
   .content p { text-align: left; }
@@ -134,10 +138,13 @@ footer { border-top: 1px solid var(--rule); padding-block: 22px 40px; color: var
 
 <div class="wrap page">
   <aside class="profile">
-    <div class="photo">
-      <span aria-hidden="true">WL</span>
-      <img src="profile.jpg?v=4" alt="Weihe Li" data-fallback>
-    </div>
+    <figure class="photo-fig">
+      <div class="photo">
+        <span aria-hidden="true">WL</span>
+        <img src="profile.jpg?v=4" alt="Weihe Li" data-fallback>
+      </div>
+      <figcaption><i class="fa-solid fa-location-dot" aria-hidden="true"></i> White Cliffs of Dover, UK</figcaption>
+    </figure>
     <h1>Weihe Li</h1>
     <p class="aff">Postdoctoral Researcher,<br>Department of Computing,<br>Imperial College London.</p>
     <div class="icons">
