@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Weihe Li, postdoctoral researcher at Imperial College London. Sketches and systems for high-velocity data streams.">
+<title>Weihe Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
+<style>
+/* Layout: classic Hexo-Academia-style homepage. Plain white page, serif type, title + nav on one line, photo card on the left, justified reading column on the right. Deliberately light-only to match the reference look. */
+:root {
+  --bg: #ffffff;
+  --ink: #3b3b3b;
+  --head: #2f2f2f;
+  --muted: #8a8a8a;
+  --rule: #ececec;
+  --blue: #2b7bd6;
+  --navy: #10208f;
+  --red: #c0392b;
+  --serif: "Noto Serif", Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.75; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 24px; }
+
+/* Navbar */
+.navbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--rule); }
+.navbar .wrap { display: flex; align-items: center; gap: 64px; min-height: 80px; }
+.navbar .site { font-weight: 700; font-size: 1.3rem; color: var(--muted); white-space: nowrap; }
+.navbar .site:hover { color: var(--head); text-decoration: none; }
+.navbar nav { display: flex; gap: 32px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.navbar nav::-webkit-scrollbar { display: none; }
+.navbar nav a { color: var(--muted); font-size: 1.15rem; white-space: nowrap; padding-block: 22px; }
+.navbar nav a:hover { color: var(--head); text-decoration: none; }
+
+/* Page grid */
+.page { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 72px; padding-block: 44px 64px; align-items: start; }
+
+/* Profile */
+.profile { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 110px); }
+.photo { position: relative; width: 200px; aspect-ratio: 1 / 1; max-width: 100%; border-radius: 8px; overflow: hidden; background: #e9edf3; display: grid; place-items: center; }
+.photo span { font-size: 2.6rem; font-weight: 700; color: #a3adbb; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.profile h1 { font-size: 1.2rem; font-weight: 700; color: var(--head); margin: 12px 0 2px; line-height: 1.3; }
+.profile .aff { font-size: 0.9rem; line-height: 1.5; margin: 0 0 12px; color: var(--ink); }
+.icons { display: flex; gap: 12px; margin: 0 0 16px; font-size: 1.15rem; }
+.icons a { color: #111; }
+.icons a:hover { color: var(--blue); }
+.plinks { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 0.92rem; }
+.plinks a { color: var(--navy); display: inline-flex; align-items: center; gap: 6px; }
+.plinks .fa-fw, .plinks svg { width: 1em; }
+.mail { margin-top: 12px; font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.mail span { color: var(--ink); overflow-wrap: anywhere; user-select: all; }
+.copy { font: inherit; font-size: 0.75rem; padding: 0 8px; border-radius: 999px; border: 1px solid var(--rule); background: var(--bg); color: var(--muted); cursor: pointer; }
+.copy:hover { border-color: var(--blue); color: var(--blue); }
+
+/* Content */
+.content { min-width: 0; }
+.content section { scroll-margin-top: 96px; }
+.content section + section { margin-top: 36px; }
+.content h2 { font-size: 2rem; font-weight: 600; color: var(--head); margin: 0 0 18px; line-height: 1.3; }
+.content h2 .emo { margin-right: 6px; }
+.content h3 { font-size: 1.3rem; font-weight: 700; color: var(--head); margin: 26px 0 12px; }
+.content p { margin: 0 0 16px; text-align: justify; hyphens: auto; }
+.hl { color: var(--red); font-weight: 700; }
+.blue { font-weight: 700; }
+
+/* News */
+.news { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.news .d { font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; margin-right: 4px; }
+
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.pubs li { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 4px; }
+.pubs .n { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.pubs .t { font-weight: 700; color: var(--head); line-height: 1.5; }
+.pubs .a b { color: var(--head); }
+.pubs .v { font-style: italic; }
+.pubs .v b { font-style: normal; }
+.pubs .links { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; margin-left: 6px; font-style: normal; font-weight: 700; }
+.award { color: var(--red); font-weight: 700; }
+
+/* Plain lists */
+.plain { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.plain .sub { color: var(--muted); }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+
+footer { border-top: 1px solid var(--rule); padding-block: 22px 40px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+
+@media (max-width: 860px) {
+  .navbar .wrap { gap: 24px; min-height: 60px; }
+  .navbar .site { display: none; }
+  .navbar nav { gap: 22px; }
+  .navbar nav a { font-size: 1rem; padding-block: 16px; }
+  .page { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 28px 48px; }
+  .profile { position: static; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 18px; align-items: start; }
+  .photo { width: 112px; grid-row: span 5; }
+  .profile h1 { margin-top: 0; }
+  .content h2 { font-size: 1.6rem; }
+  .content p { text-align: left; }
+  .two { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) {
+  .pubs li { grid-template-columns: 40px minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="wrap">
+    <a class="site" href="#about">Weihe Li's Homepage</a>
+    <nav aria-label="Sections">
+      <a href="#about">Home</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+      <a href="#awards">Awards</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap page">
+  <aside class="profile">
+    <div class="photo">
+      <span aria-hidden="true">WL</span>
+      <img src="profile.jpg" alt="Weihe Li" data-fallback>
+    </div>
+    <h1>Weihe Li</h1>
+    <p class="aff">Postdoctoral Researcher,<br>Department of Computing,<br>Imperial College London.</p>
+    <div class="icons">
+      <a href="https://github.com/WeiheLi" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:weihe.li@imperial.ac.uk" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <ul class="plinks">
+      <li><a href="https://scholar.google.com/citations?user=HzBqZGcAAAAJ&amp;hl=en" target="_blank" rel="noopener"><i class="fa-solid fa-graduation-cap fa-fw" aria-hidden="true"></i>Google Scholar</a></li>
+      <li><a href="https://orcid.org/0000-0002-8516-0104" target="_blank" rel="noopener"><i class="fa-brands fa-orcid fa-fw" aria-hidden="true"></i>ORCID</a></li>
+    </ul>
+    <div class="mail"><span id="email">weihe.li@imperial.ac.uk</span><button class="copy" id="copyEmail" type="button">Copy</button></div>
+  </aside>
+
+  <main class="content">
+    <section id="about">
+      <h2><span class="emo" aria-hidden="true">&#x1F468;&#x200D;&#x1F393;</span>About me</h2>
+      <p>I am a postdoctoral researcher in the Large-Scale Data &amp; Systems (LSDS) group at Imperial College London, where I work on <span class="hl">cloud networking</span> with Dr. Marios Kogias. I received my Ph.D. from the University of Edinburgh in 2025, advised by Prof. Paul Patras, and my M.Sc. from Central South University, advised by Prof. Jiawei Huang.</p>
+      <p>My research focuses on <span class="hl">sketches and stream analytics</span>, <span class="hl">data-intensive systems</span>, and <span class="hl">programmable data planes</span>. Modern systems need answers from data streams that arrive faster than exact state can be kept: which items are heavy, which keep recurring, which stay stable. I design sketches, compact data structures with provable error bounds, to answer such questions, and build them into systems that run at line rate on multi-core CPUs, programmable switches, and FPGAs.</p>
+      <p>As first author, I have published at <a class="blue" href="#publications">ACM SIGMOD, IEEE ICDE, ACM SIGKDD, and ACM WWW</a>, and received the <span class="hl">ACM WWW 2024 Best Student Paper Award</span>.</p>
+    </section>
+
+    <section id="news">
+      <h2><span class="emo" aria-hidden="true">&#x1F525;</span>News</h2>
+      <ul class="news">
+        <li><span class="d">2026.09</span> &#x1F389; Cadence is accepted at <b>IEEE ICDE 2027</b>.</li>
+        <li><span class="d">2026.08</span> &#x1F3DB;&#xFE0F; Joined the LSDS group at Imperial College London as a postdoctoral researcher, working on cloud networking.</li>
+        <li><span class="d">2026.08</span> &#x1F389; Nino-Sketch is accepted at <b>ACM CIKM 2026</b>.</li>
+        <li><span class="d">2026.08</span> &#x1F4C4; Lasso appears at <b>ACM SIGKDD 2026</b> in Jeju.</li>
+        <li><span class="d">2026.06</span> &#x1F389; Charon, a priority-aware sketch, is accepted as a poster at <b>ACM SIGCOMM 2026</b>.</li>
+        <li><span class="d">2026.05</span> &#x2708;&#xFE0F; Visiting researcher at the University of Glasgow, hosted by Prof. Dimitrios Pezaros, until July.</li>
+        <li><span class="d">2025.11</span> &#x1F3A4; Invited talks at the University of Cambridge and Imperial College London.</li>
+        <li><span class="d">2025.10</span> &#x1F393; Completed my Ph.D. at the University of Edinburgh. Thesis: <a href="https://era.ed.ac.uk/handle/1842/44140" target="_blank" rel="noopener">Mining High-Speed Data Streams Using Sketches</a>.</li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2><span class="emo" aria-hidden="true">&#x1F4DD;</span>Publications</h2>
+
+      <h3>Conference Papers</h3>
+      <ol class="pubs">
+        <li><span class="n">[C8]</span><div>
+          <div class="t">Cadence: Real-Time Sustained Stable Item Lookup in High-Speed Data Streams</div>
+          <div class="a"><b>W. Li</b>, J. Huang, T. Chu, J. Wang</div>
+          <div class="v">IEEE International Conference on Data Engineering (<b>ICDE 2027</b>)</div>
+        </div></li>
+        <li><span class="n">[C7]</span><div>
+          <div class="t">Lasso: Accurate and Efficient Detection of Long-Lived Sparse Items in High-Speed Data Streams</div>
+          <div class="a"><b>W. Li</b>, J. Huang, Z. Li, T. Chu, Q. Su, J. Wang</div>
+          <div class="v">ACM SIGKDD Conference on Knowledge Discovery and Data Mining (<b>KDD 2026</b>)</div>
+        </div></li>
+        <li><span class="n">[C6]</span><div>
+          <div class="t">Pay Where It Matters: Accurate and Versatile Bit-Level Stream Analytics with Nino-Sketch</div>
+          <div class="a"><b>W. Li</b>, H. Liu, Z. Li, P. Patras</div>
+          <div class="v">ACM International Conference on Information and Knowledge Management (<b>CIKM 2026</b>)</div>
+        </div></li>
+        <li><span class="n">[C5]</span><div>
+          <div class="t">Pandora: An Efficient and Rapid Solution for Persistence-Based Tasks in High-Speed Data Streams</div>
+          <div class="a"><b>W. Li</b> (single author)</div>
+          <div class="v">ACM SIGMOD International Conference on Management of Data (<b>SIGMOD 2025</b>) <span class="links"><a href="https://homepages.inf.ed.ac.uk/ppatras/pub/sigmod25.pdf" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[C4]</span><div>
+          <div class="t">Pallas: A Data-Plane-Only Approach to Accurate Persistent Flow Detection on Programmable Switches in High-Speed Networks</div>
+          <div class="a"><b>W. Li</b>, B. B&uuml;t&uuml;n, T. Chu, M. Fiore, P. Patras</div>
+          <div class="v">IEEE International Conference on Network Protocols (<b>ICNP 2025</b>) <span class="links"><a href="https://homepages.inf.ed.ac.uk/ppatras/pub/icnp25.pdf" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[C3]</span><div>
+          <div class="t">Pontus: A Memory-Efficient and High-Accuracy Approach for Persistence-Based Item Lookup in High-Velocity Data Streams</div>
+          <div class="a"><b>W. Li</b>, Z. Li, B. B&uuml;t&uuml;n, A. Diallo, M. Fiore, P. Patras</div>
+          <div class="v">The ACM Web Conference (<b>WWW 2025</b>) <span class="links"><a href="https://doi.org/10.1145/3696410.3714670" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[C2]</span><div>
+          <div class="t">Stable-Sketch: A Versatile Sketch for Accurate, Fast, Web-Scale Data Stream Processing</div>
+          <div class="a"><b>W. Li</b>, P. Patras</div>
+          <div class="v">The ACM Web Conference (<b>WWW 2024</b>) <span class="links"><a href="https://doi.org/10.1145/3589334.3645581" target="_blank" rel="noopener">[Paper]</a></span></div>
+          <div class="award">&#x1F3C6; Best Student Paper Award</div>
+        </div></li>
+        <li><span class="n">[C1]</span><div>
+          <div class="t">Tight-Sketch: A High-Performance Sketch for Heavy Item-Oriented Data Stream Mining with Limited Memory Size</div>
+          <div class="a"><b>W. Li</b>, P. Patras</div>
+          <div class="v">ACM International Conference on Information and Knowledge Management (<b>CIKM 2023</b>) <span class="links"><a href="https://doi.org/10.1145/3583780.3615080" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+      </ol>
+
+      <h3>Journal Articles</h3>
+      <ol class="pubs">
+        <li><span class="n">[J2]</span><div>
+          <div class="t">Efficient Sketching for Heavy Item-Oriented Data Stream Mining with Constrained Memory Size</div>
+          <div class="a"><b>W. Li</b>, P. Patras</div>
+          <div class="v">IEEE Transactions on Computers (<b>TC</b>), 2025 <span class="links"><a href="https://homepages.inf.ed.ac.uk/ppatras/pub/tc25.pdf" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[J1]</span><div>
+          <div class="t">P-Sketch: A Fast and Accurate Sketch for Persistent Item Lookup</div>
+          <div class="a"><b>W. Li</b>, P. Patras</div>
+          <div class="v">IEEE/ACM Transactions on Networking (<b>ToN</b>), vol. 32, no. 2, 2024 <span class="links"><a href="https://www.research.ed.ac.uk/en/publications/p-sketch-a-fast-and-accurate-sketch-for-persistent-item-lookup/" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+      </ol>
+
+      <h3>Earlier Work: Adaptive Video Streaming</h3>
+      <ol class="pubs">
+        <li><span class="n">[E5]</span><div>
+          <div class="t">VASE: Enhancing Adaptive Bitrate Selection for VBR-Encoded Audio and Video Content With Deep Reinforcement Learning</div>
+          <div class="a"><b>W. Li</b>, J. Huang, Q. Su, W. Jiang, J. Wang</div>
+          <div class="v">IEEE Transactions on Mobile Computing (<b>TMC</b>), 2024 <span class="links"><a href="https://www.research.ed.ac.uk/en/publications/vase-enhancing-adaptive-bitrate-selection-for-vbr-encoded-audio-a/" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[E4]</span><div>
+          <div class="t">Optimizing Video Streaming in Dynamic Networks: An Intelligent Adaptive Bitrate Solution Considering Scene Intricacy and Data Budget</div>
+          <div class="a"><b>W. Li</b>, J. Huang, Y. Liang, Q. Su, J. Liu, W. Lyu, J. Wang</div>
+          <div class="v">IEEE Transactions on Mobile Computing (<b>TMC</b>), 2024 <span class="links"><a href="https://doi.org/10.1109/TMC.2024.3406409" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[E3]</span><div>
+          <div class="t">Learning Audio and Video Bitrate Selection Strategies Via Explicit Requirements</div>
+          <div class="a"><b>W. Li</b>, J. Huang, J. Liu, W. Jiang, J. Wang</div>
+          <div class="v">IEEE Transactions on Mobile Computing (<b>TMC</b>), 2024</div>
+        </div></li>
+        <li><span class="n">[E2]</span><div>
+          <div class="t">An Apprenticeship Learning Approach for Adaptive Video Streaming Based on Chunk Quality and User Preference</div>
+          <div class="a"><b>W. Li</b>, J. Huang, S. Wang, S. Liu, J. Wang</div>
+          <div class="v">IEEE Transactions on Multimedia (<b>TMM</b>), 2023 <span class="links"><a href="https://doi.org/10.1109/TMM.2022.3147667" target="_blank" rel="noopener">[Paper]</a></span></div>
+        </div></li>
+        <li><span class="n">[E1]</span><div>
+          <div class="t">CAST: An Intricate-Scene Aware Adaptive Bitrate Approach for Video Streaming via Parallel Training</div>
+          <div class="a"><b>W. Li</b>, J. Huang, Y. Liang, J. Liu, W. Zhang, W. Lyu, J. Wang</div>
+          <div class="v">International Conference on Algorithms and Architectures for Parallel Processing (<b>ICA3PP 2023</b>)</div>
+          <div class="award">&#x1F3C6; Best Student Paper Award</div>
+        </div></li>
+      </ol>
+      <p style="margin-top:18px">Full list on <a href="https://scholar.google.com/citations?user=HzBqZGcAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+    </section>
+
+    <section id="talks">
+      <h2><span class="emo" aria-hidden="true">&#x1F3A4;</span>Invited Talks</h2>
+      <ul class="plain">
+        <li>University of Glasgow, May 2026. <span class="sub">Host: Prof. Dimitrios Pezaros</span></li>
+        <li>Southeast University, Nanjing, Jan 2026. <span class="sub">Host: Prof. Jiahui Jin</span></li>
+        <li>Imperial College London, Nov 2025. <span class="sub">Host: Dr. Marios Kogias</span></li>
+        <li>University of Cambridge, Nov 2025. <span class="sub">Host: Prof. Andrew W. Moore</span></li>
+        <li>Multi-Service Networks Workshop, Abingdon, Jul 2025 and Jul 2024</li>
+        <li>RIPE 90, Lisbon, May 2025</li>
+        <li>UK System Research Challenges Workshop, Apr 2025</li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <h2><span class="emo" aria-hidden="true">&#x1F3EB;</span>Education &amp; Experience</h2>
+      <div class="two">
+        <div>
+          <h3 style="margin-top:0">Positions</h3>
+          <ul class="plain">
+            <li>Postdoctoral Researcher, Imperial College London<br><span class="sub">Aug. 2026 &ndash; present</span></li>
+            <li>Postdoctoral Researcher, University of Edinburgh<br><span class="sub">Aug. 2025 &ndash; Jul. 2026</span></li>
+          </ul>
+          <h3>Education</h3>
+          <ul class="plain">
+            <li>Ph.D., University of Edinburgh<br><span class="sub">Sep. 2021 &ndash; Oct. 2025</span></li>
+            <li>M.Sc., Central South University<br><span class="sub">Sep. 2018 &ndash; Sep. 2021</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Research Visits</h3>
+          <ul class="plain">
+            <li>University of Glasgow <span class="sub">(Prof. Dimitrios Pezaros)</span><br><span class="sub">May 2026 &ndash; Jul. 2026</span></li>
+            <li>University of Cambridge <span class="sub">(Prof. Andrew W. Moore)</span><br><span class="sub">Feb. 2025 &ndash; May 2025</span></li>
+            <li>Imperial College London <span class="sub">(Prof. Christos-Savvas Bouganis)</span><br><span class="sub">Jan. 2025 &ndash; Apr. 2025</span></li>
+            <li>IMDEA Networks Institute <span class="sub">(Prof. Marco Fiore)</span><br><span class="sub">Sep. 2024 &ndash; Dec. 2024</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2><span class="emo" aria-hidden="true">&#x1F4BB;</span>Services</h2>
+      <ul class="plain">
+        <li><b>Program Committee:</b> ACM CIKM 2026 (Full Research Track), ACM ICMR 2026, ACM S3 Workshop 2025, ICA3PP DNA Workshop 2023</li>
+        <li><b>Conference Reviewer:</b> VLDB 2027, ACM SIGKDD 2024 and 2026, ACM MM 2025 and 2026, IEEE ICME 2025 and 2026</li>
+        <li><b>Journal Reviewer:</b> IEEE TKDE, IEEE/ACM ToN, IEEE TMC, IEEE TC, IEEE TII, IEEE TNSM, IEEE Network, Computer Networks, FGCS</li>
+      </ul>
+    </section>
+
+    <section id="awards">
+      <h2><span class="emo" aria-hidden="true">&#x1F3C6;</span>Selected Awards</h2>
+      <ul class="plain">
+        <li><b>ACM WWW Best Student Paper Award</b>, 2024</li>
+        <li><b>ICA3PP Best Student Paper Award</b>, 2023</li>
+        <li>Great Britain-China Educational Trust Award, 2025</li>
+        <li>IEEE ICNP Travel Grant, 2025</li>
+        <li>ACM WWW Student Travel Award, 2025</li>
+        <li>Chinese Government Award for Outstanding Students Abroad, 2024</li>
+        <li>Outstanding Master's Thesis of Hunan Province, 2023</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">&copy; 2026 Weihe Li &middot; Last updated October 2026</div>
+</footer>
+
+<script>
+(function () {
+  var img = document.querySelector('img[data-fallback]');
+  if (img) {
+    var drop = function () { img.remove(); };
+    if (img.complete && img.naturalWidth === 0) drop(); else img.addEventListener('error', drop);
+  }
+  var btn = document.getElementById('copyEmail');
+  var emailEl = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = emailEl.textContent.trim();
+    function selectFallback() {
+      var r = document.createRange(); r.selectNodeContents(emailEl);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+    }
+    try { navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, selectFallback); }
+    catch (e) { selectFallback(); }
+    setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+  });
+})();
+</script>
+</body>
+</html>
